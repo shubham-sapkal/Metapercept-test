@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XSLT Test</title>
+</head>
+
+<style>
+
+    table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    th, td {
+        border-color: 1pt solid black;
+        padding: 8px;
+        text-align: center;
+    }
+
+    th {
+        background-color: #D6EFED;
+        text-align: center;
+    }
+
+</style>
+
+
+<body>
+
+        <table id="empTable">
+            <thead>
+            <tr>
+                <th>Employee Name</th>
+                <th>Designation</th>
+                <th>Date Of Joining</th>
+                <th>Address</th>
+                <th>Salary</th>
+            </tr>
+            </thead>
+            <tbody id="empTableData">
+                <!-- Content will be rendered dynamically-->>
+
+            </tbody>
+
+            
+        </table>
+
+        <button onclick="filter1()">Filter And Display</button>
+
+        
+
+
+    <script>
+
+        // Sample data
+        const employees = [
+            {name: "Shubham Sapkal", designation: "Technical Writer", joinDate: "16/12/22", address: "Mumbai", salary: "550000"},
+            {name: "Himang Vanjani", designation: "Tech Lead", joinDate: "11/1/19", address: "Bhandara", salary: "300000"},
+            {name: "Sandeep Maurya", designation: "Technical Writer", joinDate: "08/09/18", address: "Palghar", salary: "600000"},
+            {name: "Vishal Chadhari", designation: "HR", joinDate: "18/11/21", address: "Jalgaon", salary: "340000"},
+            {name: "Piyush Singunjude", designation: "Technical Writer", joinDate: "5/12/22", address: "Bhandara", salary: "500000"},
+        ];
+
+        const tableBody = document.getElementById('empTableData')
+        tableBody.innerHTML = '';
+
+        employees.forEach(employee => {
+                const row = document.createElement('tr');
+                
+                row.innerHTML = `
+                <td>${employee.name}</td>
+                <td>${employee.designation}</td>
+                <td>${employee.joinDate}</td>
+                <td>${employee.address}</td>
+                <td>${employee.salary}</td>
+                `;
+
+                tableBody.appendChild(row);
+            });
+
+
+        function filter1() {
+
+            const filteredData = employees.filter(employee =>
+                employee.designation == "Technical Writer" && (employee.salary > 500000 && employee.salary < 700000)
+            );
+
+            const tableBody = document.getElementById('empTableData');
+            tableBody.innerHTML = '';
+
+            filteredData.forEach(employee => {
+                const row = document.createElement('tr');
+                
+                row.innerHTML = `
+                <td>${employee.name}</td>
+                <td>${employee.designation}</td>
+                <td>${employee.joinDate}</td>
+                <td>${employee.address}</td>
+                <td>${employee.salary}</td>
+                `;
+
+                tableBody.appendChild(row);
+            });
+
+        }
+
+        // filter1();
+
+
+    </script>
+
+
+    
+</body>
+</html>
