@@ -54,7 +54,7 @@
 
     <script>
 
-        // Sample data
+        // Sample data, inital data
         const employees = [
             {name: "Shubham Sapkal", designation: "Technical Writer", joinDate: "16/12/22", address: "Mumbai", salary: "550000"},
             {name: "Himang Vanjani", designation: "Tech Lead", joinDate: "11/1/19", address: "Bhandara", salary: "300000"},
@@ -63,6 +63,7 @@
             {name: "Piyush Singunjude", designation: "Technical Writer", joinDate: "5/12/22", address: "Bhandara", salary: "500000"},
         ];
 
+        // loading init data into table
         const tableBody = document.getElementById('empTableData')
         tableBody.innerHTML = '';
 
@@ -80,7 +81,8 @@
                 tableBody.appendChild(row);
             });
 
-
+        
+        // Filtering function bsed on given condition
         function filter1() {
 
             const filteredData = employees.filter(employee =>
